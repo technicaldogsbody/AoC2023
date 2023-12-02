@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -11,14 +11,18 @@
 
   <ItemGroup>
     <None Remove="Data\matrix.txt" />
-    <None Remove="Data\test.txt" />
+    <None Remove="Data\test1.txt" />
+    <None Remove="Data\test2.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Data\matrix.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\test.txt">
+    <Content Include="Data\test2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\test1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

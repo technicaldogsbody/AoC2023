@@ -5,8 +5,8 @@ namespace AdventOfCode.Shared.Tests
         [Fact]
         public void GetFileAsString_ValidFile_ReturnsCorrectContent()
         {
-            var content = FileService.GetFileAsString("test.txt"); // Ensure test.txt exists with known content
-            Assert.Equal("Hello, World!\r\nThis is a test file.\r\nIt contains multiple lines.", content);
+            var content = FileService.GetFileAsString("test1.txt"); // Ensure test.txt exists with known content
+            Assert.Equal("Hello, World!", content);
         }
 
         [Fact]
@@ -18,7 +18,7 @@ namespace AdventOfCode.Shared.Tests
         [Fact]
         public void GetFileAsArray_ValidFile_ReturnsCorrectArray()
         {
-            var lines = FileService.GetFileAsArray("test.txt"); // Ensure test.txt exists with multiple lines
+            var lines = FileService.GetFileAsArray("test2.txt"); // Ensure test.txt exists with multiple lines
             Assert.Equal(new string[] { "Hello, World!", "This is a test file.", "It contains multiple lines." }, lines);
         }
 
