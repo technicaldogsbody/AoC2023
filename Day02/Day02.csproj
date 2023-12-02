@@ -7,4 +7,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Data\full.txt" />
+    <None Remove="Data\sample.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\full.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\sample.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdventOfCode.Shared\AdventOfCode.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

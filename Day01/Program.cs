@@ -1,5 +1,6 @@
 ﻿using AdventOfCode.Shared;
 using Day01;
+using System.Diagnostics.CodeAnalysis;
 
 var calibrations = new Calibrations();
 
@@ -22,3 +23,6 @@ total = calibrations.GetTrueTotal(full);
 Console.WriteLine("Full2: " + total);
 
 Console.ReadLine();
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }
