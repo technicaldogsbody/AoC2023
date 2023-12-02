@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\empty.txt" />
     <None Remove="Data\matrix.txt" />
     <None Remove="Data\test1.txt" />
     <None Remove="Data\test2.txt" />
@@ -17,6 +18,9 @@
 
   <ItemGroup>
     <Content Include="Data\matrix.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\empty.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\test2.txt">

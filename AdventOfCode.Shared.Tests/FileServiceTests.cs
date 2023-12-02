@@ -29,6 +29,11 @@ namespace AdventOfCode.Shared.Tests
             Assert.Equal(new int[,] { { 1, 2 }, { 3, 4 } }, array);
         }
 
-        // Additional tests for other methods and edge cases...
+        [Fact]
+        public void GetFileAs2dIntArray_EmptyFile_ReturnsCorrect2dArray()
+        {
+            var array = FileService.GetFileAs2dIntArray("empty.txt"); // Ensure matrix.txt exists with numeric 2D data
+            Assert.Equal(new int[0, 0], array);
+        }
     }
 }
