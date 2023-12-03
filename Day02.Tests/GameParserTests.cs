@@ -21,18 +21,6 @@ public class GameParserTests
     }
 
     [Fact]
-    public void ParseCubeCounts_ValidInput_ReturnsCorrectCounts()
-    {
-        var input = "3 red, 2 green, 1 blue";
-
-        var result = parser.ParseCubeCounts(input);
-
-        Assert.Equal(3, result.red);
-        Assert.Equal(2, result.green);
-        Assert.Equal(1, result.blue);
-    }
-
-    [Fact]
     public void GetSumOfValidGameIds_ValidGames_ReturnsCorrectSum()
     {
         var games = new Dictionary<int, List<(int red, int green, int blue)>>
@@ -44,26 +32,6 @@ public class GameParserTests
         var result = parser.GetSumOfValidGameIds(games, 4, 5, 6);
 
         Assert.Equal(3, result); // Only Game 1 is valid
-    }
-
-    [Fact]
-    public void IsGameValid_ValidGame_ReturnsTrue()
-    {
-        var subsets = new List<(int red, int green, int blue)> { (3, 2, 1), (2, 3, 4) };
-
-        var result = parser.IsGameValid(subsets, 4, 5, 6);
-
-        Assert.True(result);
-    }
-
-    [Fact]
-    public void IsGameValid_InvalidGame_ReturnsFalse()
-    {
-        var subsets = new List<(int red, int green, int blue)> { (5, 2, 1), (2, 3, 4) };
-
-        var result = parser.IsGameValid(subsets, 4, 5, 6);
-
-        Assert.False(result);
     }
 
     [Fact]
@@ -81,15 +49,4 @@ public class GameParserTests
         Assert.Equal(156, result);
     }
 
-    [Fact]
-    public void FindMinimumCubes_ValidInput_ReturnsCorrectMinimums()
-    {
-        var subsets = new List<(int red, int green, int blue)> { (3, 2, 1), (2, 3, 4) };
-
-        var result = parser.FindMinimumCubes(subsets);
-
-        Assert.Equal(3, result.red);
-        Assert.Equal(3, result.green);
-        Assert.Equal(4, result.blue);
-    }
 }

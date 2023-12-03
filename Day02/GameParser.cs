@@ -2,11 +2,11 @@
 {
     public class GameParser
     {
-        public Dictionary<int, List<(int red, int green, int blue)>> ParseGames(IEnumerable<string> gameStrings)
+        public Dictionary<int, List<(int red, int green, int blue)>> ParseGames(IEnumerable<string> lines)
         {
             var gamesList = new Dictionary<int, List<(int red, int green, int blue)>>();
 
-            foreach (var game in gameStrings)
+            foreach (var game in lines)
             {
                 var parts = game.Split(':');
                 var gameId = int.Parse(parts[0].Replace("Game ", "").Trim());
@@ -17,7 +17,7 @@
             return gamesList;
         }
 
-        public (int red, int green, int blue) ParseCubeCounts(string subset)
+        private (int red, int green, int blue) ParseCubeCounts(string subset)
         {
             int red = 0, green = 0, blue = 0;
             var counts = subset.Split(',');
@@ -40,7 +40,7 @@
             return games.Where(game => IsGameValid(game.Value, maxRed, maxGreen, maxBlue)).Sum(game => game.Key);
         }
 
-        public bool IsGameValid(List<(int red, int green, int blue)> subsets, int maxRed, int maxGreen, int maxBlue)
+        private bool IsGameValid(List<(int red, int green, int blue)> subsets, int maxRed, int maxGreen, int maxBlue)
         {
             return subsets.All(subset => subset.red <= maxRed && subset.green <= maxGreen && subset.blue <= maxBlue);
         }
@@ -57,7 +57,7 @@
             return sum;
         }
 
-        public (int red, int green, int blue) FindMinimumCubes(List<(int red, int green, int blue)> subsets)
+        private (int red, int green, int blue) FindMinimumCubes(List<(int red, int green, int blue)> subsets)
         {
             var minRed = subsets.Max(subset => subset.red);
             var minGreen = subsets.Max(subset => subset.green);
