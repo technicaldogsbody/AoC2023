@@ -19,5 +19,7 @@ Console.WriteLine($"Sample 2: {totalNumOfCards}");
 totalNumOfCards = checker.GetTotalNumberOfCards(full);
 Console.WriteLine($"Full 2: {totalNumOfCards}");
 
+Console.ReadLine();
+
 [ExcludeFromCodeCoverage]
 public partial class Program { }

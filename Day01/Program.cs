@@ -14,6 +14,11 @@ total = calibrations.GetTotal(full);
 
 Console.WriteLine("Full: " + total);
 
+//FancyConsole.WriteInfo(new List<(string name, Func<object> function)>
+//{
+//    new (string, Func<object>)("Full", () => calibrations.GetTotal(full))
+//});
+
 var sample2 = FileService.GetFileAsArray("sample2.txt");
 total = calibrations.GetTrueTotal(sample2);
 

@@ -2,7 +2,7 @@
 
 public class GardenMapper
 {
-    public long GetLowestLocation(string input, bool useSeedRange)
+    public async Task<long> GetLowestLocation(string input, bool useSeedRange)
     {
         var seedNumbers = ParseSeeds(input, useSeedRange);
         var seedToSoilMap = ParseMap(input, "seed-to-soil map:");
@@ -13,21 +13,28 @@ public class GardenMapper
         var temperatureToHumidityMap = ParseMap(input, "temperature-to-humidity map:");
         var humidityToLocationMap = ParseMap(input, "humidity-to-location map:");
 
-        var locations = new List<long>();
+        var lowestLocation = long.MaxValue;
+        var tasks = new List<Task>();
+
         foreach (var seed in seedNumbers)
         {
-            var soil = ConvertNumber(seedToSoilMap, seed);
-            var fertilizer = ConvertNumber(soilToFertilizerMap, soil);
-            var water = ConvertNumber(fertilizerToWaterMap, fertilizer);
-            var light = ConvertNumber(waterToLightMap, water);
-            var temperature = ConvertNumber(lightToTemperatureMap, light);
-            var humidity = ConvertNumber(temperatureToHumidityMap, temperature);
-            var location = ConvertNumber(humidityToLocationMap, humidity);
-            
-            locations.Add(location);
+            tasks.Add(Task.Run(() =>
+            {
+                var soil = ConvertNumber(seedToSoilMap, seed);
+                var fertilizer = ConvertNumber(soilToFertilizerMap, soil);
+                var water = ConvertNumber(fertilizerToWaterMap, fertilizer);
+                var light = ConvertNumber(waterToLightMap, water);
+                var temperature = ConvertNumber(lightToTemperatureMap, light);
+                var humidity = ConvertNumber(temperatureToHumidityMap, temperature);
+                var location = ConvertNumber(humidityToLocationMap, humidity);
+
+                lowestLocation = location < lowestLocation ? location : lowestLocation;
+            }));
         }
 
-        return locations.MinBy(l => l);
+        await Task.WhenAll(tasks);
+
+        return lowestLocation;
     }
 
     private IEnumerable<long> ParseSeeds(string input, bool useSeedRange)
