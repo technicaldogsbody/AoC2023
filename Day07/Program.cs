@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AdventOfCode.Shared;
 using Day07;
@@ -45,3 +46,6 @@ int GetJokerTotalWinnings(string[] strings)
 
     return hands.Select((t, i) => t.Bid * (i + 1)).Sum();
 }
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }

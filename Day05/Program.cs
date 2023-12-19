@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
+using AdventOfCode.Shared;
 using Day05;
 
 var sample = FileService.GetFileAsString("sample.txt");
@@ -12,3 +13,6 @@ FancyConsole.WriteInfo("Day 05", new List<(string name, Func<object> function)>
     ("Sample 2", () => mapper.GetLowestLocation(sample, true)),
     ("Full 2", () => mapper.GetLowestLocation(full, true))
 });
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }

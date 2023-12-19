@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
+using AdventOfCode.Shared;
 using Day06;
 
 long[] sampleRaceTimes = { 7, 15, 30 };
@@ -20,3 +21,6 @@ FancyConsole.WriteInfo("Day 06", new List<(string name, Func<object> function)>
     ("Sample 2", () => calculator.GetMarginOfError(sampleRaceTimes2, sampleRecordDistances2)),
     ("Full 2", () => calculator.GetMarginOfError(raceTimes2, recordDistances2))
 });
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }
