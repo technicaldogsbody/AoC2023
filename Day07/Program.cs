@@ -16,17 +16,32 @@ string[] input =
 
 var actualinput = FileService.GetFileAsArray("full.txt").ToArray();
 
-var hands = actualinput.Select(line => line.Split(' '))
-    .Select(parts => new JokerHand(parts[0], int.Parse(parts[1])))
-    .ToList();
-
-hands.Sort();
-
-int totalWinnings = 0;
-for (int i = 0; i < hands.Count; i++)
+FancyConsole.WriteInfo("Day 07", new List<(string name, Func<object> function)>
 {
-    Console.WriteLine($"{hands[i].Cards} ({hands[i].SortedCards}) - { hands[i].DetermineHandType() } - {hands[i].Bid} * {i + 1}");
-    totalWinnings += hands[i].Bid * (i + 1);
+    ("Sample 1", () => GetTotalWinnings(input)),
+    ("Full 1", () => GetTotalWinnings(actualinput)),
+    ("Sample 2", () => GetJokerTotalWinnings(input)),
+    ("Full 2", () => GetJokerTotalWinnings(actualinput))
+});
+
+int GetTotalWinnings(string[] strings)
+{
+    var hands = strings.Select(line => line.Split(' '))
+        .Select(parts => new JokerHand(parts[0], int.Parse(parts[1])))
+        .ToList();
+
+    hands.Sort();
+
+    return hands.Select((t, i) => t.Bid * (i + 1)).Sum();
 }
 
-Console.WriteLine($"Total winnings: {totalWinnings}");
+int GetJokerTotalWinnings(string[] strings)
+{
+    var hands = strings.Select(line => line.Split(' '))
+        .Select(parts => new JokerHand(parts[0], int.Parse(parts[1])))
+        .ToList();
+
+    hands.Sort();
+
+    return hands.Select((t, i) => t.Bid * (i + 1)).Sum();
+}

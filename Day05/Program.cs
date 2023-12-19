@@ -5,14 +5,10 @@ var sample = FileService.GetFileAsString("sample.txt");
 var full = FileService.GetFileAsString("full.txt");
 var mapper = new GardenMapper();
 
-var lowestLocation = mapper.GetLowestLocation(sample, false);
-Console.WriteLine($"Sample: {lowestLocation}");
-
-lowestLocation = mapper.GetLowestLocation(full, false);
-Console.WriteLine($"Full: {lowestLocation}");
-
-lowestLocation = mapper.GetLowestLocation(sample, true);
-Console.WriteLine($"Sample 2: {lowestLocation}");
-
-lowestLocation = mapper.GetLowestLocation(full, true);
-Console.WriteLine($"Full 2: {lowestLocation}");
+FancyConsole.WriteInfo("Day 05", new List<(string name, Func<object> function)>
+{
+    ("Sample 1", () => mapper.GetLowestLocation(sample, false)),
+    ("Full 1", () => mapper.GetLowestLocation(full, false)),
+    ("Sample 2", () => mapper.GetLowestLocation(sample, true)),
+    ("Full 2", () => mapper.GetLowestLocation(full, true))
+});
