@@ -5,24 +5,16 @@ using System.Diagnostics.CodeAnalysis;
 var parser = new EnginePartParser();
 
 var sample = FileService.GetFileAsArray("sample.txt");
-
-var sumOfPartNumbers = parser.SumOfPartNumbers(sample.ToArray());
-
-Console.WriteLine($"Sample: {sumOfPartNumbers}");
-
 var full = FileService.GetFileAsArray("full.txt");
 
-sumOfPartNumbers = parser.SumOfPartNumbers(full.ToArray());
 
-Console.WriteLine($"Full: {sumOfPartNumbers}");
-
-var sumOfGearRatios = parser.SumOfGearRatios(sample.ToArray());
-
-Console.WriteLine($"Sample 2: {sumOfGearRatios}");
-
-sumOfGearRatios = parser.SumOfGearRatios(full.ToArray());
-
-Console.WriteLine($"Full 2: {sumOfGearRatios}");
+FancyConsole.WriteInfo("Day 03", new List<(string name, Func<object> function)>
+{
+    ("Sample 1", () => parser.SumOfPartNumbers(sample.ToArray())),
+    ("Full 1", () => parser.SumOfPartNumbers(full.ToArray())),
+    ("Sample 2", () => parser.SumOfGearRatios(sample.ToArray())),
+    ("Full 2", () => parser.SumOfGearRatios(full.ToArray()))
+});
 
 [ExcludeFromCodeCoverage]
 public partial class Program { }

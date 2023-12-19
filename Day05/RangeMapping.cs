@@ -1,6 +1,6 @@
 ﻿namespace Day05;
 
-public class RangeMapping
+public record RangeMapping
 {
     public long SourceStart { get; set; }
     public long DestStart { get; set; }

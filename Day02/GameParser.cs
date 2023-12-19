@@ -2,7 +2,7 @@
 {
     public class GameParser
     {
-        public Dictionary<int, List<(int red, int green, int blue)>> ParseGames(IEnumerable<string> lines)
+        private Dictionary<int, List<(int red, int green, int blue)>> ParseGames(IEnumerable<string> lines)
         {
             var gamesList = new Dictionary<int, List<(int red, int green, int blue)>>();
 
@@ -35,8 +35,10 @@
             return (red, green, blue);
         }
 
-        public int GetSumOfValidGameIds(Dictionary<int, List<(int red, int green, int blue)>> games, int maxRed, int maxGreen, int maxBlue)
+        public int GetSumOfValidGameIds(IEnumerable<string> lines, int maxRed, int maxGreen, int maxBlue)
         {
+            var games = ParseGames(lines);
+            
             return games.Where(game => IsGameValid(game.Value, maxRed, maxGreen, maxBlue)).Sum(game => game.Key);
         }
 
@@ -45,8 +47,10 @@
             return subsets.All(subset => subset.red <= maxRed && subset.green <= maxGreen && subset.blue <= maxBlue);
         }
 
-        public long CalculateSumOfPowers(Dictionary<int, List<(int red, int green, int blue)>> games)
+        public long CalculateSumOfPowers(IEnumerable<string> lines)
         {
+            var games = ParseGames(lines);
+            
             long sum = 0;
             foreach (var game in games)
             {

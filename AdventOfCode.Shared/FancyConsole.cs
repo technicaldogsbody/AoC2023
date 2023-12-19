@@ -1,5 +1,4 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Linq;
 using Humanizer;
@@ -9,8 +8,9 @@ namespace AdventOfCode.Shared
 {
     public static class FancyConsole
     {
-        public static void WriteInfo(IEnumerable<(string name, Func<object> function)> functions)
+        public static void WriteInfo(string day, IEnumerable<(string name, Func<object> function)> functions)
         {
+            AnsiConsole.Write(new FigletText(day));
 
             var table = new Table();
 
@@ -26,8 +26,7 @@ namespace AdventOfCode.Shared
                 sw.Stop();
                 table.AddRow(function.name, result.ToString(), sw.Elapsed.Humanize());
             }
-
-            // Render the table to the console
+            
             AnsiConsole.Write(table);
         }
     }
