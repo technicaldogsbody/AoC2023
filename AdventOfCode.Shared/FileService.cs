@@ -40,5 +40,13 @@ namespace AdventOfCode.Shared
 
             return response;
         }
+
+        public static List<List<int>> GetFileAsListOfListOfInt(string fileName, string rowDelimiterPattern = @"\r\n|\n")
+        {
+            var rows = Regex.Split(File.ReadAllText($"Data/{fileName}"), rowDelimiterPattern).Where(row => !string.IsNullOrEmpty(row)).ToArray();
+
+            return rows.Length == 0 ? 
+                new() : rows.Select(t => t.Split(" ")).Select(row => row.Select(int.Parse).ToList()).ToList();
+        }
     }
 }

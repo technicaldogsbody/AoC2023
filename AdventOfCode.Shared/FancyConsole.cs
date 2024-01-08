@@ -13,7 +13,6 @@ namespace AdventOfCode.Shared
         public static void WriteInfo(string day, IEnumerable<(string name, Func<object> function)> functions)
         {
             AnsiConsole.Write(new FigletText(day));
-
             var table = new Table();
 
             // Add some columns
@@ -21,15 +20,17 @@ namespace AdventOfCode.Shared
             table.AddColumn("Result");
             table.AddColumn("Time Taken");
 
-            foreach (var function in functions)
+            AnsiConsole.Live(table).Start(ctx =>
             {
-                var sw = Stopwatch.StartNew();
-                var result = function.function.Invoke();
-                sw.Stop();
-                table.AddRow(function.name, result.ToString(), sw.Elapsed.Humanize());
-            }
-            
-            AnsiConsole.Write(table);
+                foreach (var function in functions)
+                {
+                    var sw = Stopwatch.StartNew();
+                    var result = function.function.Invoke();
+                    sw.Stop();
+                    table.AddRow(function.name, result.ToString(), sw.Elapsed.Humanize());
+                    ctx.Refresh();
+                }
+            });
         }
     }
 }
